@@ -2,10 +2,12 @@ TARGET_BOARD_PLATFORM := msmnile
 TARGET_BOOTLOADER_BOARD_NAME := msmnile
 TARGET_BOARD_TYPE := auto
 TARGET_BOARD_SUFFIX := _au
+TARGET_BOARD_DERIVATIVE_SUFFIX := _t
 
-SHIPPING_API_LEVEL := 34
+SHIPPING_API_LEVEL := 33
 PRODUCT_SHIPPING_API_LEVEL := $(SHIPPING_API_LEVEL)
 BOARD_SHIPPING_API_LEVEL := $(SHIPPING_API_LEVEL)
+TARGET_USES_CAS1.2 := false
 
 ifeq ($(TARGET_SINGLE_TREE), true)
   PRODUCT_PRODUCT_VNDK_VERSION := current
@@ -266,10 +268,10 @@ PRODUCT_PROPERTY_OVERRIDES  += \
 $(call inherit-product, packages/services/Car/car_product/build/car.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
-PRODUCT_NAME := msmnile_au
-PRODUCT_DEVICE := msmnile_au
+PRODUCT_NAME := msmnile_au_t
+PRODUCT_DEVICE := msmnile_au_t
 PRODUCT_BRAND := qti
-PRODUCT_MODEL := msmnile_au for arm64
+PRODUCT_MODEL := msmnile_au_t for arm64
 PRODUCT_MANUFACTURER := Qualcomm
 
 PRODUCT_VENDOR_PROPERTIES += \
@@ -368,8 +370,8 @@ endif #TARGET_ENABLE_QC_AV_ENHANCEMENTS
 PRODUCT_COPY_FILES += hardware/interfaces/security/keymint/aidl/default/android.hardware.hardware_keystore.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.hardware_keystore.xml
 
 #Hibernation Script
-PRODUCT_COPY_FILES += device/qcom/msmnile_au/hiber.sh:$(TARGET_COPY_OUT_VENDOR)/bin/hiber.sh
-PRODUCT_COPY_FILES += device/qcom/msmnile_au/hiber_restore.sh:$(TARGET_COPY_OUT_VENDOR)/bin/hiber_restore.sh
+PRODUCT_COPY_FILES += device/qcom/msmnile_au_t/hiber.sh:$(TARGET_COPY_OUT_VENDOR)/bin/hiber.sh
+PRODUCT_COPY_FILES += device/qcom/msmnile_au_t/hiber_restore.sh:$(TARGET_COPY_OUT_VENDOR)/bin/hiber_restore.sh
 
 PRODUCT_PACKAGES += android.hardware.media.omx@1.0-impl
 
@@ -423,12 +425,12 @@ PRODUCT_PACKAGES += \
 
 # MTMD enablement
 PRODUCT_COPY_FILES += \
-    device/qcom/msmnile_au/input-port-associations.xml:$(TARGET_COPY_OUT_VENDOR)/etc/input-port-associations.xml
+    device/qcom/msmnile_au_t/input-port-associations.xml:$(TARGET_COPY_OUT_VENDOR)/etc/input-port-associations.xml
 
 
-DEVICE_MANIFEST_FILE := device/qcom/msmnile_au/manifest.xml
+DEVICE_MANIFEST_FILE := device/qcom/msmnile_au_t/manifest.xml
 DEVICE_MATRIX_FILE   := device/qcom/common/compatibility_matrix.xml
-DEVICE_FRAMEWORK_MANIFEST_FILE := device/qcom/msmnile_au/framework_manifest.xml
+DEVICE_FRAMEWORK_MANIFEST_FILE := device/qcom/msmnile_au_t/framework_manifest.xml
 ifeq ($(TARGET_SINGLE_TREE), true)
   DEVICE_FRAMEWORK_MANIFEST_FILE := device/qcom/qssi_au/framework_manifest.xml
 endif
@@ -452,7 +454,7 @@ PRODUCT_COPY_FILES += \
 #    libvolumelistener
 
 # MSM IRQ Balancer configuration file
-PRODUCT_COPY_FILES += device/qcom/msmnile_au/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
+PRODUCT_COPY_FILES += device/qcom/msmnile_au_t/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
 
 # MIDI feature
 PRODUCT_COPY_FILES += \
@@ -476,13 +478,13 @@ PRODUCT_PACKAGES += libsysprofiler \
 
 # Sensor conf files
 PRODUCT_COPY_FILES += \
-    device/qcom/msmnile_au/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf \
+    device/qcom/msmnile_au_t/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf \
     frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.accelerometer.xml \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.gyroscope.xml
 
 # Kernel modules install path
 KERNEL_MODULES_INSTALL := dlkm
-KERNEL_MODULES_OUT := out/target/product/msmnile_au/$(KERNEL_MODULES_INSTALL)/lib/modules
+KERNEL_MODULES_OUT := out/target/product/msmnile_au_t/$(KERNEL_MODULES_INSTALL)/lib/modules
 
 #FEATURE_OPENGLES_EXTENSION_PACK support string config file
 PRODUCT_COPY_FILES += \
@@ -496,7 +498,7 @@ PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
 #Enable vndk-sp Libraries
 PRODUCT_PACKAGES += vndk_package
 
-DEVICE_PACKAGE_OVERLAYS += device/qcom/msmnile_au/overlay
+DEVICE_PACKAGE_OVERLAYS += device/qcom/msmnile_au_t/overlay
 
 # Enable flag to support slow devices
 TARGET_PRESIL_SLOW_BOARD := true
@@ -686,7 +688,7 @@ PRODUCT_PROPERTY_OVERRIDES += ro.radio.noril=true
 PRODUCT_PROPERTY_OVERRIDES += ro.boot.wificountrycode=us
 
 # Native service to load modules
-ifneq (,$(filter $(TARGET_BOARD_PLATFORM)$(TARGET_BOARD_SUFFIX), msmnile_au))
+ifneq (,$(filter $(TARGET_BOARD_PLATFORM)$(TARGET_BOARD_SUFFIX), msmnile_au_t))
 PRODUCT_VENDOR_PROPERTIES += ro.vendor.qti.load_dlkm.service=native
 endif
 

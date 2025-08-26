@@ -163,9 +163,9 @@ ifneq ($(AB_OTA_UPDATER),true)
 endif
 
 ifeq (true,$(call math_gt_or_eq,$(SHIPPING_API_LEVEL),34))
-  TARGET_RECOVERY_FSTAB := device/qcom/msmnile_au/msmnileau_fstab_metadata_f2fs/fstab.qcom
+  TARGET_RECOVERY_FSTAB := device/qcom/msmnile_au_t/msmnileau_fstab_metadata_f2fs/fstab.qcom
 else
-  TARGET_RECOVERY_FSTAB := device/qcom/msmnile_au/fstab.qcom
+  TARGET_RECOVERY_FSTAB := device/qcom/msmnile_au_t/fstab.qcom
 endif
 
 
@@ -194,7 +194,7 @@ else
 BOARD_METADATAIMAGE_PARTITION_SIZE := 16777216
 BOARD_METADATAIMAGE_FILE_SYSTEM_TYPE := ext4
 endif
-BOARD_PREBUILT_DTBOIMAGE := out/target/product/msmnile_au/prebuilt_dtbo.img
+BOARD_PREBUILT_DTBOIMAGE := out/target/product/msmnile_au_t/prebuilt_dtbo.img
 BOARD_DTBOIMG_PARTITION_SIZE := 0x0800000
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
