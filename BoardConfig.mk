@@ -7,8 +7,8 @@
 TARGET_KERNEL_DLKM_DISABLE := false
 
 #We are resetting BOARD_VENDOR_KERNEL_MODULES due to BoardConfig.mk invoked twice
-#   1. From vendor/qcom/proprietary/common/config/device-vendor.mk
-#   2. From build/make/core/board_config.mk
+# 1. From $(QCPATH)/common/config/device-vendor.mk
+# 2. From build/make/core/board_config.mk
 #which impacts duplicates found in vendor_dlkm partition while building image
 ifneq ( ,$(filter Baklava 16,$(PLATFORM_VERSION)))
 BOARD_VENDOR_KERNEL_MODULES :=
@@ -80,12 +80,6 @@ ifeq (,$(findstring $(TARGET_BOARD_PLATFORM)_au, $(TARGET_FS_CONFIG_GEN)))
 TARGET_FS_CONFIG_GEN += device/qcom/$(TARGET_BOARD_PLATFORM)_au/config.fs
 endif
 endif
-
-# Enable chained vbmeta for boot images
-BOARD_AVB_BOOT_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
-BOARD_AVB_BOOT_ALGORITHM := SHA256_RSA4096
-BOARD_AVB_BOOT_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
-BOARD_AVB_BOOT_ROLLBACK_INDEX_LOCATION := 3
 
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv7-a-neon
@@ -380,8 +374,8 @@ include device/qcom/sepolicy_vndr/SEPolicy.mk
 ENABLE_CAMERA_SERVICE := true
 
 #We are sorting BOARD_VENDOR_KERNEL_MODULES due to BoardConfig.mk invoked twice
-#   1. From vendor/qcom/proprietary/common/config/device-vendor.mk
-#   2. From build/make/core/board_config.mk
+# 1. From $(QCPATH)/common/config/device-vendor.mk
+# 2. From build/make/core/board_config.mk
 #which impacts duplicates found in vendor_dlkm partition while building image
 ifneq ( ,$(filter Baklava 16,$(PLATFORM_VERSION)))
 BOARD_VENDOR_KERNEL_MODULES := $(sort $(BOARD_VENDOR_KERNEL_MODULES))
