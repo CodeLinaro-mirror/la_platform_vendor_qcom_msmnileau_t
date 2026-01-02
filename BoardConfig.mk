@@ -10,7 +10,7 @@ TARGET_KERNEL_DLKM_DISABLE := false
 # 1. From $(QCPATH)/common/config/device-vendor.mk
 # 2. From build/make/core/board_config.mk
 #which impacts duplicates found in vendor_dlkm partition while building image
-ifneq ( ,$(filter Baklava 16,$(PLATFORM_VERSION)))
+ifneq ( ,$(filter Baklava 16 CinnamonBun 17,$(PLATFORM_VERSION)))
 BOARD_VENDOR_KERNEL_MODULES :=
 endif
 
@@ -214,7 +214,7 @@ endif
 
 BOARD_DO_NOT_STRIP_VENDOR_MODULES := false
 
-ifeq ( ,$(filter Baklava 16,$(PLATFORM_VERSION)))
+ifeq ( ,$(filter Baklava 16 CinnamonBun 17,$(PLATFORM_VERSION)))
 BOARD_VENDOR_KERNEL_MODULES += $(shell ls $(KERNEL_MODULES_OUT)/*.ko)
 endif
 
@@ -340,7 +340,7 @@ endif
 
 #Flag to enable System SDK Requirements.
 #All vendor APK will be compiled against system_current API set.
-ifeq ( ,$(filter Baklava 16,$(PLATFORM_VERSION)))
+ifeq ( ,$(filter Baklava 16 CinnamonBun 17,$(PLATFORM_VERSION)))
 BOARD_SYSTEMSDK_VERSIONS:= $(SHIPPING_API_LEVEL)
 endif
 
@@ -354,7 +354,7 @@ BUILD_BROKEN_USES_BUILD_HOST_EXECUTABLE := true
 BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
 BUILD_BROKEN_USES_BUILD_HOST_STATIC_LIBRARY := true
 BUILD_BROKEN_CLANG_PROPERTY := true
-ifeq ( ,$(filter Baklava 16,$(PLATFORM_VERSION)))
+ifeq ( ,$(filter Baklava 16 CinnamonBun 17,$(PLATFORM_VERSION)))
 BUILD_BROKEN_USES_SOONG_PYTHON2_MODULES := true
 endif
 
@@ -377,6 +377,6 @@ ENABLE_CAMERA_SERVICE := true
 # 1. From $(QCPATH)/common/config/device-vendor.mk
 # 2. From build/make/core/board_config.mk
 #which impacts duplicates found in vendor_dlkm partition while building image
-ifneq ( ,$(filter Baklava 16,$(PLATFORM_VERSION)))
+ifneq ( ,$(filter Baklava 16 CinnamonBun 17,$(PLATFORM_VERSION)))
 BOARD_VENDOR_KERNEL_MODULES := $(sort $(BOARD_VENDOR_KERNEL_MODULES))
 endif
