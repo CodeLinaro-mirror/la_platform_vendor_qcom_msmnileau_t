@@ -3,6 +3,9 @@
 # Product-specific compile-time definitions.
 #
 
+# Bypass global flag to make source tree READ-ONLY
+BUILD_BROKEN_SRC_DIR_IS_WRITABLE := true
+
 # Disable DLKMs compilation for msmnile_au
 TARGET_KERNEL_DLKM_DISABLE := false
 
